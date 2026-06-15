@@ -7,18 +7,22 @@ from difflib import get_close_matches
 movies = pd.read_csv('tmdb_5000_movies.csv')
 
 # Features used
-selected_features = ['genres', 'keywords', 'tagline', 'cast', 'director']
+selected_features = [
+    'genres',
+    'keywords',
+    'tagline',
+    'overview'
+]
 
 for feature in selected_features:
     movies[feature] = movies[feature].fillna('')
 
 # Combine features
 combined_features = (
-    movies['genres'] + ' ' +
-    movies['keywords'] + ' ' +
-    movies['tagline'] + ' ' +
-    movies['cast'] + ' ' +
-    movies['director']
+    movies['genres'].fillna('') + ' ' +
+    movies['keywords'].fillna('') + ' ' +
+    movies['tagline'].fillna('') + ' ' +
+    movies['overview'].fillna('')
 )
 
 # Convert text to vectors
